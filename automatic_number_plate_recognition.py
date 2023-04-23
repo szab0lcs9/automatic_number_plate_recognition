@@ -1,13 +1,41 @@
 import sys
+import subprocess
 import cv2
 from cap_from_youtube import cap_from_youtube
 import imutils
 import pytesseract
 
-# For Windows users: pytesseract path, change it to your own path! 
+# Pytesseract path, change it to your own path! 
 # Without this line, pytesseract will not work!
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
+def checkOS():
+    return sys.platform
+
+def installPackages(platform):
+    match platform:
+        case 'darwin':
+            subprocess.check_call([sys.executable, "-m", "/bin/bash", "-c", "\"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""])
+            subprocess.check_call([sys.executable, "-m", "brew", "install", "tesseract"])
+            subprocess.check_call([sys.executable, "-m", "pip", "install", "opencv-python"])
+            subprocess.check_call([sys.executable, "-m", "pip", "install", "imutils"])
+            subprocess.check_call([sys.executable, "-m", "pip", "install", "cap_from_youtube"])
+        case 'linux':
+            subprocess.check_call([sys.executable, "-m", "sudo", "apt", "install", "tesseract-ocr"])
+            subprocess.check_call([sys.executable, "-m", "pip", "install", "imutils"])
+            subprocess.check_call([sys.executable, "-m", "pip", "install", "opencv-python"])
+            subprocess.check_call([sys.executable, "-m", "pip", "install", "cap_from_youtube"])
+        case 'win32':
+            subprocess.check_call([sys.executable, "-m", "pip", "install", "opencv-python"])
+            subprocess.check_call([sys.executable, "-m", "pip", "install", "imutils"])
+            subprocess.check_call([sys.executable, "-m", "pip", "install", "pytesseract"])
+            subprocess.check_call([sys.executable, "-m", "pip", "install", "cap_from_youtube"])
+        case _:
+            print('Please install the required packages manually!')
+
+# Checking the OS and installing the required packages
+platform = checkOS()
+installPackages(platform)
 
 # Checking if the given url and quality are correct
 try:
