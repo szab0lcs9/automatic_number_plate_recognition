@@ -3,7 +3,7 @@
 The program plays a video from youtube and recognizing number plates from cars.
 
 ## Requirements:
-To use this program it will be neccessary to have the following dependecies on your computer:
+To use this program it will be neccessary to have the packages that written below, however the script will automatically installing these.
 
 
    * **Tesseract-OCR:** Tesseract is an optical character recognition engine for various operating systems. It is free software, released under the Apache License. Originally developed by Hewlett-Packard as proprietary software in the 1980s, it was released as open source in 2005 and development has been sponsored by Google since 2006.
@@ -13,7 +13,7 @@ To use this program it will be neccessary to have the following dependecies on y
      
        Install this exe in *C:\Program Files\Tesseract-OCR*
        
-     * **macOS:** Installing the Tesseract OCR engine on macOS is quite simple if you use the [Homebrew](brew.sh) package manager.
+     * **macOS:** Installing the Tesseract OCR engine on macOS is quite simple if you use the [Homebrew](https://brew.sh) package manager.
      
        Use the link above to install Homebrew on your system if it is not already installed.
        
@@ -62,3 +62,6 @@ You can use this application from the CLI of your computer the following way:
      ```
      
 If everything is correct, the program will be open the youtube video from the given url with the given quality, draws a rectangle around the detected licence plate and writes the recognized text to the terminal.
+
+
+To quit from the video, press 'Q'.
