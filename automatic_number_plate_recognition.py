@@ -64,6 +64,7 @@ try:
         # apply blur for every frame
         #gaussianBlurredImage = cv2.GaussianBlur(grayImage, (3, 3), 0)
         bFilteredGrayImage = cv2.bilateralFilter(grayImage, 21, 27, 27)
+        
         #cv2.imshow('gauss', gaussianBlurredImage)
         #cv2.imshow('bilateral', bFilteredGrayImage)
 
@@ -76,17 +77,20 @@ try:
         edgedImage = cv2.Canny(bFilteredGrayImage, 40, 200)
         #cv2.imshow('edged', edgedImage)
 
+        # find contours
         contours = cv2.findContours(edgedImage.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         contours = imutils.grab_contours(contours)
+        # sort the top 10 contours
         contours = sorted(contours, key = cv2.contourArea, reverse = True)[:10]
 
-        
+        # iterate through the contours
         for c in contours:
             approx = cv2.approxPolyDP(c, 10, True)
-            
+            # if the contour has 4 vertices, it is a rectangle
             if len(approx) == 4:
                 x, y, w, h = cv2.boundingRect(c)
                 ratio = w / h
+                # if the ratio is between 1 and 5, it is a license plate
                 if ratio > 1 and ratio < 5:
                     plate = frame[y:y+h, x:x+w]
                     grayedPlate = cv2.cvtColor(plate, cv2.COLOR_BGR2GRAY)
@@ -96,6 +100,7 @@ try:
                         #text = reader.readtext(plate)
                     if len(text) < 4:
                         break
+                    # draw the rectangle and the text in the frames
                     cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 1)
                     cv2.putText(frame, text, (x, y-5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
                     print("Detected licence plate: ", text)
