@@ -1,6 +1,6 @@
 # Automatic Number Plate Recognition
 
-The program plays a video from youtube and recognizing number plates from cars.
+Plays a video from youtube and recognizing number plates from cars.
 
 ## Requirements:
 To use this program it will be neccessary to have the packages that written below, however the script will automatically installing these.
@@ -9,7 +9,7 @@ To use this program it will be neccessary to have the packages that written belo
    * **Tesseract-OCR:** Tesseract is an optical character recognition engine for various operating systems. It is free software, released under the Apache License. Originally developed by Hewlett-Packard as proprietary software in the 1980s, it was released as open source in 2005 and development has been sponsored by Google since 2006.
    
      Installation:
-     * **Windows:** it can be downloaded from [here](https://digi.bib.uni-mannheim.de/tesseract/?ref=nanonets.com
+     * **Windows:** it can be downloaded from [here](https://digi.bib.uni-mannheim.de/tesseract/?ref=nanonets.com)
      
        Install this exe in *C:\Program Files\Tesseract-OCR*
        
