@@ -1,3 +1,4 @@
+import sys
 import cv2
 from cap_from_youtube import cap_from_youtube
 import imutils
@@ -5,16 +6,22 @@ import pytesseract
 
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
-# checking if the url is correct
+
+# checking the url and quality correction
 try:
     try:
-        url = 'https://www.youtube.com/watch?v=KZxtgEkGCqg'
-        capture = cap_from_youtube(url, '720p50')
+        if len(sys.argv) > 1:
+            url = sys.argv[1]
+            quality = sys.argv[2]
+            #url = 'https://www.youtube.com/watch?v=KZxtgEkGCqg'
+            capture = cap_from_youtube(str(url), str(quality))
+        else:
+            print('Please enter the URL and the quality of the video')
     except:
-        print('Incorrect URL name or the video quality was not found')
+        print('Incorrect URL name or invalid video quality')
 
     while True:
-
+        
         # checking if the video is opened
         try:
             check, frame = capture.read()
