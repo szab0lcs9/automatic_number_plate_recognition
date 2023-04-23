@@ -46,7 +46,7 @@ try:
             #url = 'https://www.youtube.com/watch?v=KZxtgEkGCqg'
             capture = cap_from_youtube(str(url), str(quality))
         else:
-            print('Please enter the URL and the quality of the video')
+            print('Please enter YouTube URL and video quality')
     except:
         print('Incorrect URL name or invalid video quality')
 
@@ -64,7 +64,7 @@ try:
         # apply blur for every frame
         #gaussianBlurredImage = cv2.GaussianBlur(grayImage, (3, 3), 0)
         bFilteredGrayImage = cv2.bilateralFilter(grayImage, 21, 27, 27)
-        
+
         #cv2.imshow('gauss', gaussianBlurredImage)
         #cv2.imshow('bilateral', bFilteredGrayImage)
 
@@ -114,4 +114,4 @@ finally:
         capture.release()
         cv2.destroyAllWindows()
     except:
-        print('Video cannot be played')
+        pass
