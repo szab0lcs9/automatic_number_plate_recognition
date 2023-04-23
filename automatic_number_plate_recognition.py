@@ -4,10 +4,12 @@ from cap_from_youtube import cap_from_youtube
 import imutils
 import pytesseract
 
+# For Windows users: pytesseract path, change it to your own path! 
+# Without this line, pytesseract will not work!
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
 
-# checking the url and quality correction
+# Checking if the given url and quality are correct
 try:
     try:
         if len(sys.argv) > 1:
@@ -21,8 +23,9 @@ try:
         print('Incorrect URL name or invalid video quality')
 
     while True:
-        
-        # checking if the video is opened
+        if sys.argv[1] == None or sys.argv[2] == None:
+            break
+        # Checking if the video is opened
         try:
             check, frame = capture.read()
         except:
